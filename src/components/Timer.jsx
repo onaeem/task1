@@ -21,7 +21,8 @@ class Timer extends React.Component{
                 <EditTimer
                     onEdit={(flag) => this.onEdit(flag)}
                     timer={this.props.timer}
-                    onUpdate={(newTimer,oldTimer) => this.props.onUpdate(newTimer,oldTimer)}
+                    onUpdate={(newTimer, oldTimer, created_time, updated_time) =>
+                        this.props.onUpdate(newTimer, oldTimer, created_time, updated_time)}
                 />
             );
         }

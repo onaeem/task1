@@ -7,38 +7,51 @@ class TimerApp extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            titles: []
+            timers: JSON.parse(localStorage.getItem('KEY'))
         }
     }
 
-    onUpdate(newTimer, oldTimer){
-        console.log("this.state.titles.indexOf(oldTimer) : "+ this.state.titles.indexOf(this.oldTimer));
+    componentDidUpdate(){
+        const str = JSON.stringify(this.state.timers);
+        localStorage.setItem('KEY', str);
+    }
+
+    onUpdate(newTimer, oldTimer, created_time, updated_time){
+
+        console.log(newTimer, oldTimer, updated_time);
+        let index;
+        this.state.timers.forEach( (timer) => {
+            if(oldTimer === timer.title){
+                index = this.state.timers.indexOf(timer);
+            }}
+        );
         this.setState({
-            title:this.state.titles.splice(this.state.titles.indexOf(oldTimer), 1, newTimer)
+            timer: this.state.timers.splice(index, 1 , {title: newTimer, created_time: created_time, updated_time: updated_time})
         })
     }
 
     onDelete(identifier){
         this.setState({
-            title:this.state.titles.splice(this.state.titles.indexOf(identifier), 1)
+            title:this.state.timers.splice(this.state.timers.indexOf(identifier), 1)
         })
     }
 
-    AddTimer(title) {
+    AddTimer(timer) {
         this.setState({
-            title:this.state.titles.push(title)
+            title:this.state.timers.push(timer)
         })
     }
 
     render() {
         return(
-            <div className="container"
-                 style={{display: 'center'}}
+            <div
+                className="container"
+                style={{display: 'center', padding: '50px'}}
             >
-                <NewTimer AddTimer={this.AddTimer.bind(this)}/>
+                <NewTimer AddTimer={(object) => this.AddTimer(object)}/>
                 <TimerList
-                    timers={this.state.titles}
-                    onUpdate={(newTimer,oldTimer) => {this.onUpdate(newTimer,oldTimer)}}
+                    timers={this.state.timers}
+                    onUpdate={(newTimer, oldTimer, created_time, updated_time) => {this.onUpdate(newTimer, oldTimer, created_time, updated_time)}}
                     onDelete={(identifier) => {this.onDelete(identifier)}}
                 />
             </div>

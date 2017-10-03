@@ -17,7 +17,8 @@ class TimerList extends React.Component{
                                 <div>
                                     <Timer
                                         timer={timer}
-                                        onUpdate={(newTimer,oldTimer) => this.props.onUpdate(newTimer,oldTimer)}
+                                        onUpdate={(newTimer, oldTimer, created_time, updated_time) =>
+                                            this.props.onUpdate(newTimer, oldTimer, created_time, updated_time)}
                                         onDelete={(identifier) => this.props.onDelete(identifier)}
                                     />
                                 </div>
