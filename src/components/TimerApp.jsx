@@ -6,18 +6,21 @@ import TimerList from './TimerList';
 class TimerApp extends React.Component{
     constructor(props){
         super(props);
-
         this.state = {
             timers: [],
             variable: 'Button not clicked'
-        }
+        };
+        this.onUpdate = this.onUpdate.bind(this);
+        this.onDelete = this.onDelete.bind(this);
+        this.addTimer = this.addTimer.bind(this);
+
     }
     componentWillMount(){
         if(localStorage.getItem('KEY') === null){
             this.setState({timers: []});
         }
         else {
-            this.setState({timers: JSON.parse(localStorage.getItem('KEY'))});
+            this.setState({timers: JSON.parse(localStorage.getItem('KEY'))})
         }
     }
 
@@ -55,13 +58,12 @@ class TimerApp extends React.Component{
                 className="container"
                 style={{display: 'center', padding: '50px'}}
             >
-                <NewTimer AddTimer={(object) => this.addTimer(object)}/>
+                <NewTimer AddTimer={this.addTimer}/>
                 {/*<Test variable={this.state.variable} setButton={() => this.setButton()}/>*/}
                 <TimerList
                     timers={this.state.timers}
-                    onUpdate={(newTimer, oldTimer, created_time, updated_time) =>
-                        {this.onUpdate(newTimer, oldTimer, created_time, updated_time)}}
-                    onDelete={(identifier) => {this.onDelete(identifier)}}
+                    onUpdate={this.onUpdate}
+                    onDelete={this.onDelete}
                 />
             </div>
         )

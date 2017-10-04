@@ -21,8 +21,7 @@ class Timer extends React.Component{
                 <EditTimer
                     onEdit={(flag) => this.onEdit(flag)}
                     timer={this.props.timer}
-                    onUpdate={(newTimer, oldTimer, created_time, updated_time) =>
-                        this.props.onUpdate(newTimer, oldTimer, created_time, updated_time)}
+                    onUpdate={this.props.onUpdate}
                 />
             );
         }
@@ -31,7 +30,7 @@ class Timer extends React.Component{
                 <ViewTimer
                     onEdit={(flag) => this.onEdit(flag)}
                     timer={this.props.timer}
-                    onDelete={(identifier) => this.props.onDelete(identifier)}
+                    onDelete={this.props.onDelete}
                 />
             );
         }
