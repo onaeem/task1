@@ -13,14 +13,12 @@ class TimerApp extends React.Component{
         }
     }
 
-    componentDidUpdate(){
 
+    componentDidUpdate(){
         localStorage.setItem('KEY', JSON.stringify(this.state.timers));
     }
 
     onUpdate(newTimer, oldTimer, created_time, updated_time){
-
-        // console.log(newTimer, oldTimer, updated_time);
         let index;
         this.state.timers.forEach( (timer) => {
             if(oldTimer === timer.title){
