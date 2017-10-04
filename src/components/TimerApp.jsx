@@ -8,11 +8,18 @@ class TimerApp extends React.Component{
         super(props);
 
         this.state = {
-            timers: JSON.parse(localStorage.getItem('KEY')),
+            timers: [],
             variable: 'Button not clicked'
         }
     }
-
+    componentWillMount(){
+        if(localStorage.getItem('KEY') === null){
+            this.setState({timers: []});
+        }
+        else {
+            this.setState({timers: JSON.parse(localStorage.getItem('KEY'))});
+        }
+    }
 
     componentDidUpdate(){
         localStorage.setItem('KEY', JSON.stringify(this.state.timers));
