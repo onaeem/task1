@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class NewTimer extends React.Component{
+class NewTimer extends React.Component{
 
     constructor(){
         super();
@@ -41,4 +41,6 @@ export default class NewTimer extends React.Component{
         );
     }
 }
+
+export default NewTimer;
 

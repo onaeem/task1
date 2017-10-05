@@ -46,9 +46,9 @@ class TimerApp extends React.Component{
         })
     }
 
-    addTimer(timer) {
+    addTimer(newTimer) {
         this.setState({
-            title:this.state.timers.push(timer)
+            title:this.state.timers.push(newTimer)
         })
     }
 
